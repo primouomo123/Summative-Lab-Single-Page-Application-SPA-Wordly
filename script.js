@@ -10,6 +10,7 @@ let favorites = [];
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const word = input.value.trim();
+  input.value = "";
   if (word) {
     fetchWord(word);
   }
@@ -32,15 +33,17 @@ async function fetchWord(word) {
 function displayWord(data) {
   // Get phonetic
   let phonetic = "No pronunciation available";
-  if (data.phonetics && data.phonetics[1] && data.phonetics[1].text) {
-    phonetic = data.phonetics[1].text;
-  }
+if (data.phonetics && data.phonetics.length > 0) {
+  const phoneticObj = data.phonetics.find(p => p.text);
+  if (phoneticObj) phonetic = phoneticObj.text;
+}
 
   // Get audio URL
   let audioUrl = null;
-  if (data.phonetics && data.phonetics[1] && data.phonetics[1].audio) {
-    audioUrl = data.phonetics[1].audio;
-  }
+if (data.phonetics && data.phonetics.length > 0) {
+  const audioObj = data.phonetics.find(p => p.audio);
+  if (audioObj) audioUrl = audioObj.audio;
+}
 
   // Build meanings HTML
   let meaningsHTML = "";
@@ -49,16 +52,22 @@ function displayWord(data) {
       let definitionsHTML = "", partOfSpeech = "", synonyms = "", antonyms = "";
 
       if (meaning.definitions && meaning.definitions.length > 0) {
-        meaning.definitions.forEach(def => {
-          definitionsHTML += `<p><strong>Definition:</strong> ${def.definition} `;
+        meaning.definitions.forEach((def, index) => {
+          if (meaning.definitions.length === 1) {
+            definitionsHTML += `<p><strong>Definition:</strong> ${def.definition}</p>`;
+          } else if (meaning.definitions.length > 1) {
+            definitionsHTML += `<p><strong>Definition ${index + 1}:</strong> ${def.definition}</p>`;
+          }          
 
           if (def.example) {
-            definitionsHTML += `<strong>Example:</strong> ${def.example}</p>`;
+            definitionsHTML += `<p><strong>Example:</strong> ${def.example}</p> <br>`;
+          } else {
+            definitionsHTML += "<br>"
           }
         });
       }
 
-      partOfSpeech = `<h3>${meaning.partOfSpeech}</h3>`;
+      partOfSpeech = `<h3> As ${meaning.partOfSpeech}:</h3>`;
 
       if (meaning.synonyms && meaning.synonyms.length > 0) {
         synonyms = `<p><strong>Synonyms:</strong>${meaning.synonyms.join(", ")}</p>`;
