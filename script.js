@@ -6,7 +6,7 @@ const results = document.getElementById('results');
 // Favorites array
 let favorites = [];
 
-// Event listener for form submission
+// Event listener for the form submission
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const word = input.value.trim();
@@ -29,29 +29,35 @@ async function fetchWord(word) {
   }
 }
 
-// Display word data
+// Function to display the searched word content
 function displayWord(data) {
-  // Get phonetic
+  // Getting phonetic
   let phonetic = "No pronunciation available";
 if (data.phonetics && data.phonetics.length > 0) {
-  const phoneticObj = data.phonetics.find(p => p.text);
+  const phoneticObj = data.phonetics.find(phonet => phonet.text);
   if (phoneticObj) phonetic = phoneticObj.text;
 }
 
-  // Get audio URL
+  // Getting audio URL
   let audioUrl = null;
 if (data.phonetics && data.phonetics.length > 0) {
-  const audioObj = data.phonetics.find(p => p.audio);
+  const audioObj = data.phonetics.find(phonet => phonet.audio);
   if (audioObj) audioUrl = audioObj.audio;
 }
 
-  // Build meanings HTML
+  // Building meanings HTML
   let meaningsHTML = "";
-  if (data.meanings && data.meanings.length > 0) {
-    data.meanings.forEach(meaning => {
-      let definitionsHTML = "", partOfSpeech = "", synonyms = "", antonyms = "";
+  if (data.meanings && data.meanings.length > 0) { // Validating the meanings array
 
-      if (meaning.definitions && meaning.definitions.length > 0) {
+    // Looping through all meanings elements
+    data.meanings.forEach(meaning => {
+      let definitionsHTML = "", partOfSpeech = "";
+      let synonyms = "No synonyms available", antonyms = "No antonyms available";
+
+      if (meaning.definitions && meaning.definitions.length > 0) { /* Validating the definitions
+        array */
+
+        // Looping through all the definitions elements
         meaning.definitions.forEach((def, index) => {
           if (meaning.definitions.length === 1) {
             definitionsHTML += `<p><strong>Definition:</strong> ${def.definition}</p>`;
@@ -101,7 +107,7 @@ if (data.phonetics && data.phonetics.length > 0) {
   saveBtn.addEventListener('click', () => addFavorite(data.word));
 }
 
-// Add word to favorites
+// Add word to favorites section
 function addFavorite(word) {
   if (!favorites.includes(word)) {
     favorites.push(word);
@@ -128,7 +134,7 @@ function renderFavorites() {
   });
 }
 
-// Remove word from favorites
+// Remove word from favorites list
 function removeFavorite(word) {
   favorites = favorites.filter(fav => fav !== word);
   renderFavorites();
