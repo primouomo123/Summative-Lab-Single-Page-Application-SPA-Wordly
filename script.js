@@ -42,28 +42,50 @@ function displayWord(data) {
     audioUrl = data.phonetics[1].audio;
   }
 
-  // Getting meanings, part of speech, synonyms, antonyms, examples
-  let meaningsArray = [];
+  // Build meanings HTML
+  let meaningsHTML = "";
   if (data.meanings && data.meanings.length > 0) {
-    let partOfSpeach, sectionSynonyms, sectionAntonyms, example;
     data.meanings.forEach(meaning => {
-      partOfSpeach = meaning.partOfSpeach;
+      let definitionsHTML = "", partOfSpeech = "", synonyms = "", antonyms = "";
+
+      if (meaning.definitions && meaning.definitions.length > 0) {
+        meaning.definitions.forEach(def => {
+          definitionsHTML += `<p><strong>Definition:</strong> ${def.definition} `;
+
+          if (def.example) {
+            definitionsHTML += `<strong>Example:</strong> ${def.example}</p>`;
+          }
+        });
+      }
+
+      partOfSpeech = `<h3>${meaning.partOfSpeech}</h3>`;
 
       if (meaning.synonyms && meaning.synonyms.length > 0) {
-        sectionSynonyms = meaning.synonyms;
+        synonyms = `<p><strong>Synonyms:</strong>${meaning.synonyms.join(", ")}</p>`;
       }
 
       if (meaning.antonyms && meaning.antonyms.length > 0) {
-        sectionAntonyms = meaning.antonyms;
+        antonyms = `<p><strong>Antonyms:</strong>${meaning.antonyms.join(", ")}</p>`;
       }
+
+      meaningsHTML += `${partOfSpeech} ${definitionsHTML} ${synonyms} ${antonyms} <br>`;
     });
   }
 
   // Update the DOM
-  
+  let html = `<h2>${data.word}</h2>`;
+  html += `<p><strong>Pronunciation:</strong> ${phonetic}`;
+  if (audioUrl) {
+    html += ` <button onclick="playAudio('${audioUrl}')">🔊</button>`;
+  }
+  html += `</p>`;
 
   // Add "Save to Favorites" button
-  
+  html += `<button id="save-favorite">Save to Favorites</button>`;
+
+  html += meaningsHTML;
+
+  results.innerHTML = html;
 
   // Add event listener for the Save button
   const saveBtn = document.getElementById('save-favorite');
