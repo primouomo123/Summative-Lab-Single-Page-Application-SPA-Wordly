@@ -52,7 +52,8 @@ if (data.phonetics && data.phonetics.length > 0) {
     // Looping through all meanings elements
     data.meanings.forEach(meaning => {
       let definitionsHTML = "", partOfSpeech = "";
-      let synonyms = "No synonyms available", antonyms = "No antonyms available";
+      let synonyms = `<p><strong>Synonyms:</strong> No synonyms available.</p>`;
+      let antonyms = `<p><strong>Antonyms:</strong> No antonyms available.</p>`;
 
       if (meaning.definitions && meaning.definitions.length > 0) { /* Validating the definitions
         array */
@@ -76,11 +77,11 @@ if (data.phonetics && data.phonetics.length > 0) {
       partOfSpeech = `<h3> As ${meaning.partOfSpeech}:</h3>`;
 
       if (meaning.synonyms && meaning.synonyms.length > 0) {
-        synonyms = `<p><strong>Synonyms:</strong>${meaning.synonyms.join(", ")}</p>`;
+        synonyms = `<p><strong>Synonyms:</strong>${meaning.synonyms.join(", ")}.</p>`;
       }
 
       if (meaning.antonyms && meaning.antonyms.length > 0) {
-        antonyms = `<p><strong>Antonyms:</strong>${meaning.antonyms.join(", ")}</p>`;
+        antonyms = `<p><strong>Antonyms:</strong>${meaning.antonyms.join(", ")}.</p>`;
       }
 
       meaningsHTML += `${partOfSpeech} ${definitionsHTML} ${synonyms} ${antonyms} <br>`;
