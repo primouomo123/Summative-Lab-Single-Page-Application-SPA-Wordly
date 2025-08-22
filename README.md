@@ -16,6 +16,7 @@ Word Dictionary is a Single Pay Application (SPA) built with HTML, CSS and JavaS
 
 ## Instructions
 This SPA is very simple to use:
+
 **1.** As you open the page, you need to type the word you'd like to search in the input field that says **Enter a Word**.
 
 **2.** Now you can either click on the **submit button** or press **Enter**.
