@@ -1,7 +1,7 @@
 # Summative-Lab-Single-Page-Application-SPA-Wordly
 
 ## Project Overview
-Word Dictionary is a Single Pay Application (SPA) built with HTML, CSS and JavaScript.It connects the [Dictionary API](https://dictionaryapi.dev/) to allow users to search for words, view their definitions, pronunciation, synonyms, antonyms, and save favorite terms without reloading the page.
+Word Dictionary is a Single Page Application (SPA) built with HTML, CSS and JavaScript. It connects the [Dictionary API](https://dictionaryapi.dev/) to allow users to search for words, view their definitions, pronunciation, synonyms, antonyms, and save favorite terms without reloading the page.
 
 ## Features
 * It **searches for words** and **fetches** the definitions from the [API](https://dictionaryapi.dev/).
@@ -13,6 +13,20 @@ Word Dictionary is a Single Pay Application (SPA) built with HTML, CSS and JavaS
 * It lets the users save **favorite words** and remove them when needed.
 
 * Seamless SPA experience without any page reload.
+
+## How to Run Locally:
+
+**1.** Clone this repository:
+
+    * You can fork this repository.
+
+    * Copy the SSH link.
+
+    * Run the following command in your preferred Ubuntu folder: git clone "SSH link".
+
+    * Use cd command to move to the repo folder.
+    
+    * Open the index.html file by running this command: explorer.exe index.html.
 
 ## Instructions
 This SPA is very simple to use:
