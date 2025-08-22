@@ -18,15 +18,15 @@ Word Dictionary is a Single Page Application (SPA) built with HTML, CSS and Java
 
 **1.** Clone this repository:
 
-    * You can fork this repository.
+   * You can fork this repository.
 
-    * Copy the SSH link.
+   * Copy the SSH link.
 
-    * Run the following command in your preferred Ubuntu folder: git clone "SSH link".
+   * Run the following command in your preferred Ubuntu folder: **git clone** "**SSH link**".
 
-    * Use cd command to move to the repo folder.
+   * Use cd command to move to the repo folder.
     
-    * Open the index.html file by running this command: explorer.exe index.html.
+   * Open the index.html file by running this command: **explorer.exe index.html**.
 
 ## Instructions
 This SPA is very simple to use:
