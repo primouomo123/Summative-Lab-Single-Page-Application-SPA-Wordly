@@ -1,5 +1,20 @@
 # Summative-Lab-Single-Page-Application-SPA-Wordly
 
+## Project Overview
+Word Dictionary is a Single Pay Application (SPA) built with HTML, CSS and JavaScript.It connects the [Dictionary API](https://dictionaryapi.dev/) to allow users to search for words, view their definitions, pronunciation, synonyms, antonyms, and save favorite terms without reloading the page.
+
+## Features
+* It **searches for words** and **fetches** the definitions from the [API](https://dictionaryapi.dev/).
+
+* It plays the **pronunciation audio** (if available).
+
+* Lets users view the **IPA transcription**, **examples**, **synonyms** and **antonyms** of the searched word.
+
+* It lets the users save **favorite words** and remove them when needed.
+
+* Seamless SPA experience without any page reload.
+
+## Instructions
 This SPA is very simple to use:
 1. As you open the page, you need to type the word you'd like to search in the input field that says **Enter a Word**.
 
